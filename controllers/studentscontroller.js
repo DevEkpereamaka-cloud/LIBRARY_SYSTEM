@@ -1,8 +1,7 @@
-import students from "../models/students.js";
 import Students from "../models/students.js";
 export const createStudent = async (req, res) => {
   try {
-    const newStudent = Students.create(req.body);
+    const newStudent = await Students.create(req.body);
     res.status(201).json({ success: true, data: newStudent });
   } catch (error) {
     res.status(404).json({ success: false, message: error.message });
@@ -57,7 +56,7 @@ export const deleteStudent = async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      message: `${deleted.name} has been removed from the database`,
+      message: `${deleted.firstName} has been removed from the database`,
     });
   } catch (error) {
     res.status(500).send("Dey with me");

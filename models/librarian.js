@@ -16,11 +16,10 @@ const librarianSchema = new mongoose.Schema(
     },
     staffId: {
       type: String,
-      required: true,
       unique: true,
+      required: true,
     },
   },
   { timestamps: true },
 );
-[span_3](start_span);
-export default Librarian = mongoose.model("Librarian", librarianSchema);
+export default mongoose.model("Librarian", librarianSchema);

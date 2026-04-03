@@ -7,9 +7,9 @@ export const createBook = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-export const getAllbooks = async (req, res) => {
+export const getAllBooks = async (req, res) => {
   try {
-    const allBooks = await Books.find().populate("authors", "name");
+    const allBooks = await Books.find().populate("authors", "fullName bio");
     res
       .status(200)
       .send({ success: true, count: allBooks.length, data: allBooks });
@@ -20,7 +20,10 @@ export const getAllbooks = async (req, res) => {
 };
 export const getBook = async (req, res) => {
   try {
-    const book = await Books.findById(req.params.id);
+    const book = await Books.findById(req.params.id).populate(
+      "authors",
+      "fullName bio",
+    );
     if (!book) {
       return res.status(404).json({ message: "Book Not Found" });
     }
@@ -56,7 +59,7 @@ export const deleteBook = async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      message: `${deleted.name} with id ${deleted.id} has been removed from the database`,
+      message: `${deleted.firstName} with id ${deleted.id} has been removed from the database`,
     });
   } catch (error) {
     res.status(500).send("Dey with me");

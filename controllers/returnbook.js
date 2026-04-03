@@ -18,5 +18,13 @@ export const returnBook = async (req, res) => {
     book.issuedBy = null;
     book.returnDate = null;
     await book.save();
-  } catch (error) {}
+    res.status(200).json({
+      success: true,
+      message: "book returned successfuly",
+      data: book,
+    });
+  } catch (error) {
+    res.status(500).send("Dey with me everything is under control");
+    console.log(error);
+  }
 };

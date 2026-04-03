@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const authorsSchema = new mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String,
       required: true,
       trim: true,
@@ -15,5 +15,4 @@ const authorsSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-[span_3](start_span);
 export default mongoose.model("Authors", authorsSchema);

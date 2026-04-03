@@ -1,8 +1,8 @@
 import Authors from "../models/authors.js";
 export const createAuthor = async (req, res) => {
   try {
-    const Author = Authors.create(req.body);
-    res.status(201).json({ success: true, data: Author });
+    const author = await Authors.create(req.body);
+    res.status(201).json({ success: true, data: author });
   } catch (error) {
     res.status(400).json({ success: false, message: error.mesaage });
   }
@@ -52,7 +52,7 @@ export const deleteAuthor = async (req, res) => {
         .json({ success: false, message: "Author Not Found" });
     }
     res.status(200).json({
-      message: ` ${author.name} with id ${author.id} has been removed from the database`,
+      message: ` ${author.fullName} with id ${author.id} has been removed from the database`,
     });
   } catch (error) {
     res.status(500).send("Dey with me :)");

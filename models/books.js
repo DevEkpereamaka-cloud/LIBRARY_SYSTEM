@@ -17,8 +17,8 @@ const booksSchema = new mongoose.Schema(
     authors: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Authors",
         required: true,
+        ref: "Authors",
       },
     ],
     status: {
@@ -43,4 +43,4 @@ const booksSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-export default Books = mongoose.model("Books", booksSchema);
+export default mongoose.model("Books", booksSchema);

@@ -31,5 +31,4 @@ const studentSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
-[span_3](start_span);
-export default Students = mongoose.model("Students", studentSchema);
+export default mongoose.model("Students", studentSchema);

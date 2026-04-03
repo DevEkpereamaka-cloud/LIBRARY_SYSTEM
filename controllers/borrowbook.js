@@ -4,18 +4,24 @@ import Students from "../models/students.js";
 export const borrowBook = async (req, res) => {
   try {
     const { librarianId, studentId, returnDate } = req.body;
-    const book = Books.findById(req.params.id);
-    if (await !Students.findById(studentId)) {
+    const book = await Books.findById(req.params.id);
+    const library = await Librarian.findById(librarianId);
+    const student = await Students.findById(studentId);
+    if (!student) {
       return res
         .status(404)
         .json({ success: false, message: "student not found" });
     }
-    if (await !Librarian.findById(librarianId))
-      if (!book) {
-        return res
-          .status(404)
-          .json({ success: false, message: "Book not found" });
-      }
+    if (!library) {
+      return res
+        .status(404)
+        .json({ success: false, message: "librarian not found" });
+    }
+    if (!book) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Book not found" });
+    }
     if (book.status === "OUT") {
       return res
         .status(400)

@@ -4,7 +4,7 @@ export const createLibarian = async (req, res) => {
     const newLibrarian = await Librarian.create(req.body);
     res.status(201).json({
       success: true,
-      message: `${newLibrarian.name} has been added to the database`,
+      message: `${newLibrarian.firstName} has been added to the database`,
     });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
@@ -12,7 +12,7 @@ export const createLibarian = async (req, res) => {
 };
 export const getAllLibrarian = async (req, res) => {
   try {
-    const all = await Librarian.find().populate("librarian", "name");
+    const all = await Librarian.find().populate("firstName", "lastName");
     res.status(200).json({ success: true, count: all.length, message: all });
   } catch (error) {
     res.status(500).send("Dey with me :)");
@@ -22,7 +22,7 @@ export const getAllLibrarian = async (req, res) => {
 export const getLibrarian = async (req, res) => {
   try {
     const librarian = await Librarian.findById(req.params.id);
-    if (!libarian) {
+    if (!librarian) {
       return res
         .status(404)
         .json({ success: false, message: "Librarian not found" });
@@ -59,7 +59,7 @@ export const deleteLibrarian = async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      message: `${deleted.name} has been removed from the database"`,
+      message: `${deleted.firstName} has been removed from the database"`,
     });
   } catch (error) {
     res.status(500).send("Dey with me");
