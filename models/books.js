@@ -29,12 +29,12 @@ const booksSchema = new mongoose.Schema(
     borrowedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Students",
-      required: true,
+      default: null,
     },
     issuedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Libarian",
-      required: true,
+      default: null,
     },
     returnDate: {
       type: Date,

@@ -5,12 +5,12 @@ export const borrowBook = async (req, res) => {
   try {
     const { librarianId, studentId, returnDate } = req.body;
     const book = Books.findById(req.params.id);
-    if (!Students.findById(studentId)) {
+    if (await !Students.findById(studentId)) {
       return res
         .status(404)
         .json({ success: false, message: "student not found" });
     }
-    if (!Librarian.findById(librarianId))
+    if (await !Librarian.findById(librarianId))
       if (!book) {
         return res
           .status(404)
