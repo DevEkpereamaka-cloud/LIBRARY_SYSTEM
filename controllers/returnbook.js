@@ -6,7 +6,7 @@ export const returnBook = async (req, res) => {
     if (!book) {
       return res
         .status(404)
-        .json({ success: false, message: "Bokk not found" });
+        .json({ success: false, message: "Book not found" });
     }
     if (book.status === "IN") {
       return res
