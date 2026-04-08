@@ -14,5 +14,5 @@ app.use(bookRoutes);
 app.use(studentRoutes);
 app.use(librarianRoutes);
 app.listen(9000, () => {
-  console.log("server is up and running at port 3000");
+  console.log("server is up and running at port 9000");
 });
